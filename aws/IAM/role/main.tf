@@ -62,4 +62,98 @@ resource "aws_iam_instance_profile" "cand1" {
   role = aws_iam_role.cand1_role.name
 }
 
+/*
+permission example
+  managed_policy_arns > aws_iam_role_policy
+*/
 
+resource "aws_iam_role" "cand2_role" {
+  name               = "cand2-iam-role"
+  path               = "/"
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+
+}
+resource "aws_iam_role_policy" "cand2_s3" {
+  name   = "cand2-s3-GetObject"
+  role   = aws_iam_role.cand2_role.id
+  policy = <<EOF
+{
+  "Statement": [
+    {
+      "Sid": "AllowAppArtifactsReadAccess",
+      "Action": [
+        "s3:GetObject*"
+      ],
+      "Resource": [
+        "*"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}
+EOF
+
+}
+
+
+/*
+permission example
+  managed_policy_arns < aws_iam_role_policy
+*/
+resource "aws_iam_role" "cand3_role" {
+  name               = "cand3-iam-role"
+  path               = "/"
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+
+}
+resource "aws_iam_role_policy" "cand3_s3" {
+  name   = "cand3-s3-FullPermission"
+  role   = aws_iam_role.cand3_role.id
+  policy = <<EOF
+{
+  "Statement": [
+    {
+      "Sid": "AllowAppArtifactsReadAccess",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": [
+        "*"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}
+EOF
+
+}
