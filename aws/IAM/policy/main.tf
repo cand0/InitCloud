@@ -99,3 +99,12 @@ resource "aws_iam_policy_attachment" "attach_test_cand1" {
   policy_arn = aws_iam_policy.policy_cand2.arn
 }
 
+#user_policy_attachment test
+resource "aws_iam_user" "user-cand3" {
+  name = "user-cand3"
+}
+
+resource "aws_iam_user_policy_attachment" "attach-cand3" {
+  user = aws_iam_user.user-cand3.name
+  policy_arn = aws_iam_policy.policy_cand2.arn
+}
