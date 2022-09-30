@@ -204,3 +204,32 @@ resource "aws_iam_role_policy_attachment" "cand4_role_policy_attachment" {
   role = aws_iam_role.iam_cand4.name
   policy_arn = aws_iam_policy.policy_cand4.arn
 }
+
+# membership test
+
+
+resource "aws_iam_user_group_membership" "membership_cand1" {
+  user = aws_iam_user.iam_cand1.name
+
+  groups = [
+    aws_iam_group.group_cand2.name,
+    aws_iam_group.group_cand3.name
+  ]
+}
+resource "aws_iam_user_group_membership" "membership_cand2" {
+  user = aws_iam_user.iam_cand1.name
+  groups = [
+    aws_iam_group.group_cand4.name
+  ]
+}
+
+
+resource "aws_iam_group" "group_cand2" {
+  name = "group_cand2"
+}
+resource "aws_iam_group" "group_cand3" {
+  name = "group_cand3"
+}
+resource "aws_iam_group" "group_cand4" {
+  name = "group_cand4"
+}
