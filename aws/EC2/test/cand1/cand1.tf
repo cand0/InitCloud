@@ -1,5 +1,5 @@
 module "network" {
-    source = "/InitCloud/module/vpc_module"
+    source = "../../../../module/vpc_module"
     cidr_vpc = "172.16.0.0/16"
     subnet_cidr_cand1 = "172.16.10.0/24"
     subnet_cidr_cand2 = "172.16.20.0/24"
