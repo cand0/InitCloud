@@ -7,5 +7,5 @@ module "network" {
 module "sg" {
   vpc_id = module.network.vpc_id
   source = "./module/sg"
-  cidr_sg = "0.0.0.0/24"
+  cidr_sg = "0.0.0.0/0"
 }
