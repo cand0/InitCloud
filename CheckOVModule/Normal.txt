@@ -1,0 +1,129 @@
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 2.2.8 
+
+terraform scan results:
+
+Passed checks: 4, Failed checks: 5, Skipped checks: 0
+
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	PASSED for resource: aws_subnet.subnet_cand1
+	File: /Normal.tf:8-14
+	Guide: https://docs.bridgecrew.io/docs/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: aws_security_group.cand1_1
+	File: /Normal.tf:17-36
+	Guide: https://docs.bridgecrew.io/docs/networking_2
+Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+	PASSED for resource: aws_security_group.cand1_1
+	File: /Normal.tf:17-36
+	Guide: https://docs.bridgecrew.io/docs/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /version.tf:11-13
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	FAILED for resource: aws_security_group.cand1_1
+	File: /Normal.tf:17-36
+	Guide: https://docs.bridgecrew.io/docs/networking_1-port-security
+
+		17 | resource "aws_security_group" "cand1_1" {
+		18 |   name            = "Normal test"
+		19 |   vpc_id          = aws_vpc.vpc_cand1.id
+		20 |   description     = "Normal test"
+		21 |   ingress {
+		22 |     from_port       = 22
+		23 |     to_port         = 22
+		24 |     protocol        = "TCP"
+		25 |     cidr_blocks     = ["0.0.0.0/0"]
+		26 |   }
+		27 |   egress {
+		28 |     from_port       = 22
+		29 |     to_port         = 22
+		30 |     protocol        = "TCP"
+		31 |     cidr_blocks     = ["1.1.1.1/32"]
+		32 |   }
+		33 |   tags = {
+		34 |     Name = "module_test"
+		35 |   }
+		36 | }
+Check: CKV_AWS_23: "Ensure every security groups rule has a description"
+	FAILED for resource: aws_security_group.cand1_1
+	File: /Normal.tf:17-36
+	Guide: https://docs.bridgecrew.io/docs/networking_31
+
+		17 | resource "aws_security_group" "cand1_1" {
+		18 |   name            = "Normal test"
+		19 |   vpc_id          = aws_vpc.vpc_cand1.id
+		20 |   description     = "Normal test"
+		21 |   ingress {
+		22 |     from_port       = 22
+		23 |     to_port         = 22
+		24 |     protocol        = "TCP"
+		25 |     cidr_blocks     = ["0.0.0.0/0"]
+		26 |   }
+		27 |   egress {
+		28 |     from_port       = 22
+		29 |     to_port         = 22
+		30 |     protocol        = "TCP"
+		31 |     cidr_blocks     = ["1.1.1.1/32"]
+		32 |   }
+		33 |   tags = {
+		34 |     Name = "module_test"
+		35 |   }
+		36 | }
+Check: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+	FAILED for resource: aws_security_group.cand1_1
+	File: /Normal.tf:17-36
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+
+		17 | resource "aws_security_group" "cand1_1" {
+		18 |   name            = "Normal test"
+		19 |   vpc_id          = aws_vpc.vpc_cand1.id
+		20 |   description     = "Normal test"
+		21 |   ingress {
+		22 |     from_port       = 22
+		23 |     to_port         = 22
+		24 |     protocol        = "TCP"
+		25 |     cidr_blocks     = ["0.0.0.0/0"]
+		26 |   }
+		27 |   egress {
+		28 |     from_port       = 22
+		29 |     to_port         = 22
+		30 |     protocol        = "TCP"
+		31 |     cidr_blocks     = ["1.1.1.1/32"]
+		32 |   }
+		33 |   tags = {
+		34 |     Name = "module_test"
+		35 |   }
+		36 | }
+Check: CKV2_AWS_11: "Ensure VPC flow logging is enabled in all VPCs"
+	FAILED for resource: aws_vpc.vpc_cand1
+	File: /Normal.tf:1-6
+	Guide: https://docs.bridgecrew.io/docs/logging_9-enable-vpc-flow-logging
+
+		1 | resource "aws_vpc" "vpc_cand1" {
+		2 |     cidr_block = "172.27.0.0/16"
+		3 |     tags = {
+		4 |         Name = "vpc_ingnoh"
+		5 |     }
+		6 | }
+
+Check: CKV2_AWS_12: "Ensure the default security group of every VPC restricts all traffic"
+	FAILED for resource: aws_vpc.vpc_cand1
+	File: /Normal.tf:1-6
+	Guide: https://docs.bridgecrew.io/docs/networking_4
+
+		1 | resource "aws_vpc" "vpc_cand1" {
+		2 |     cidr_block = "172.27.0.0/16"
+		3 |     tags = {
+		4 |         Name = "vpc_ingnoh"
+		5 |     }
+		6 | }
+
+
