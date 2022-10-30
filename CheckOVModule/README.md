@@ -2,9 +2,9 @@
 <body>
 
 <h2>Module Input Validation Check</h2>
-Normal : Code in 0.0.0.0
-Static : Module in 0.0.0.0
-Variable : 0.0.0.0 When calling module from tf file
+Normal : Code in 0.0.0.0 <br />
+Static : Module in 0.0.0.0<br />
+Variable : 0.0.0.0 When calling module from tf file<br />
 
 <h2>Step</h2>
 <h3>Result</h3>
