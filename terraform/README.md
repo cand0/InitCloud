@@ -14,7 +14,7 @@ Target.SG(port)     : A의 security group <br />
 <h3>SAMPLE</h3>
 <ul>
 <li> Target.SG(22)가 설정되어있다.</li>
-      <ul> <li>All Denied + Target.NACL(22) Allow </li>
+      <ul> <li>Target.NACL(All Denied) + Target.NACL(22) Allow </li>
             <ul>
             <li> PASS </li>
               - Target.NACL(22) >= Target.SG(22) || Target.subnet >= Target.SG(22) <br />
