@@ -5,7 +5,7 @@ ex) 22 PORT Allow OR Denied // 모든 포트에 대하여 적용 가능<br />
 x.1 : 안전한 경우와 안전하지 않은 경우를 나눈다.<br />
 <hr />
 <h3>용어 정리</h3>
-Target              : 탐색하고자하는 대상<br />
+Target              : 탐색하고자하는 대상 (ex, instance)<br />
 Target.subnet       : Target의 서브넷<br />
 Target.NACL(port)   : Target이 속한 서브넷의 NACL<br />
 Target.SG(port)     : Target의 security group <br />
@@ -21,7 +21,7 @@ Target.SG(port)     : Target의 security group <br />
                   &nbsp;&nbsp;&nbsp; : SG(22) 대역대는 NACL(22)의 대역대에 포함된다.  <br />
                   &nbsp;&nbsp;&nbsp; : SG(22) 대역대는 서브넷 대역대에 포함된다. <br />
             <li> FAIL </li>
-              - !(Target.NACL(22) >= Target.SG(22)) && Target.subnet != Target.SG(22)<br />
+              - !(Target.NACL(22) >= Target.SG(22)) && !(Target.subnet <= Target.SG(22))<br />
                   &nbsp;&nbsp;&nbsp; : SG(22) 대역대는 NACL(22)의 대역대에 포함되지 않는다.<br />
                   &nbsp;&nbsp;&nbsp; : SG(22) 대역대는 서브넷 대역대에 포함되지 않는다.<br />
             </ul>
