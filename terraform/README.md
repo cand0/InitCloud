@@ -6,9 +6,9 @@ x.1 : 안전한 경우와 안전하지 않은 경우를 나눈다.<br />
 <hr />
 <h3>용어 정리</h3>
 Target              : 탐색하고자하는 대상<br />
-Target.subnet       : A의 서브넷<br />
-Target.NACL(port)   : A가 속한 서브넷의 NACL<br />
-Target.SG(port)     : A의 security group <br />
+Target.subnet       : Target의 서브넷<br />
+Target.NACL(port)   : Target이 속한 서브넷의 NACL<br />
+Target.SG(port)     : Target의 security group <br />
 
 <hr />
 <h3>SAMPLE</h3>
