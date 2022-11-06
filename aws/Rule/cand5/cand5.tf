@@ -15,7 +15,7 @@ resource "aws_iam_policy_attachment" "pass1_1" {
 resource "aws_iam_policy_attachment" "pass1_2" {
   name       = "test-policy-attchment"
   policy_arn = module.IAM.iam_policy_cand2_id
-  users = [module.IAM.iam_user_cand0_id]
+  role = [module.IAM.iam_role_cand2_id]
 }
 
 # testcode 2
