@@ -1,5 +1,5 @@
 module "IAM" {
-  source = "../../Rule"
+  source = "../Module/IAM"
   user_name = "cand2"
   group_name = "cand2"
 }
