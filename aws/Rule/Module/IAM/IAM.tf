@@ -48,3 +48,10 @@ resource "aws_iam_policy" "policy_cand2" {
   }
   )
 }
+
+resource "aws_iam_role" "role_cand1" {
+  assume_role_policy = aws_iam_policy.policy_cand1.id
+}
+resource "aws_iam_role" "role_cand2" {
+  assume_role_policy = aws_iam_policy.policy_cand2.id
+}

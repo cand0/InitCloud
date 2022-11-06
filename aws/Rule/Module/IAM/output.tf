@@ -11,3 +11,9 @@ output "iam_policy_cand1_id"{
 output "iam_policy_cand2_id"{
   value = aws_iam_policy.policy_cand2.id
 }
+output "iam_role_cand1_id" {
+  value = aws_iam_role.role_cand1.id
+}
+output "iam_role_cand2_id" {
+  value = aws_iam_role.role_cand2.id
+}
