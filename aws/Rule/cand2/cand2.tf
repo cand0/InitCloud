@@ -19,7 +19,7 @@ resource "aws_iam_group_policy_attachment" "fail1_1" {
 
 resource "aws_iam_group_policy_attachment" "fail1_2" {
   group = module.IAM.iam_group_cand0_id
-  policy_arn = module.IAM.iam_policy_cand2_id
+  policy_arn = module.IAM.iam_policy_cand1_id
 }
 
 
