@@ -24,7 +24,7 @@ resource "aws_iam_group_membership" "fail1_1" {
 resource "aws_iam_group_membership" "fail1_2" {
   group = "${aws_iam_group.cand1.id}"
   name  = "fail"
-  users = [aws_iam_user.cand3.id]
+  users = [aws_iam_user.cand4.id]
 }
 
 #pass
