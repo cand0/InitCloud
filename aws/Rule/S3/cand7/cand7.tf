@@ -46,7 +46,7 @@ resource "aws_s3_bucket_inventory" "fail1_1" {
   }
 }
 
-resource "aws_s3_bucket_inventory" "fail1_1" {
+resource "aws_s3_bucket_inventory" "fail1_2" {
   bucket = aws_s3_bucket.test1.id
   name   = "EntireBucketDaily"
 
