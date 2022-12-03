@@ -21,17 +21,28 @@ aws_security_group.ingress와 aws_security_group_rule에서 type에 ingress가 �
 ---
 
 ```go
-resource "aws_route_table" "fail1_1" {
-  vpc_id = aws_vpc.test1.id
-  route {
-    cidr_block = "1.0.0.0/8"
-    gateway_id = "${aws_internet_gateway.test1.id}"
+resource "aws_security_group" "fail" {
+  vpc_id      = aws_vpc.cand1.id
+  ingress {
+    from_port        = 81
+    to_port          = 81
+    protocol         = "tcp"
+    cidr_blocks      = [aws_vpc.cand1.cidr_block]
+  }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 }
-resource "aws_route" "test1" {
-  route_table_id = aws_route_table.fail1_1.id
-  destination_cidr_block = "2.0.0.0/8"
-  gateway_id = "${aws_internet_gateway.test1.id}"
+resource "aws_security_group_rule" "fail" {
+  from_port         = 82
+  to_port           = 82
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.fail.id}"
+  type              = "ingress"
 }
 ```
 
