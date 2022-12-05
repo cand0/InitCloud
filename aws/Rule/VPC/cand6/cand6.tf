@@ -27,6 +27,7 @@ resource "aws_network_acl" "pass2" {
   vpc_id = aws_vpc.test1.id
 }
 resource "aws_network_acl_rule" "pass2_1" {
+  egress = false      # default : false
   cidr_block = "0.0.0.0/0"
   network_acl_id = "${aws_network_acl.pass2.id}"
   protocol       = "tcp"
@@ -36,6 +37,7 @@ resource "aws_network_acl_rule" "pass2_1" {
   to_port = 0
 }
 resource "aws_network_acl_rule" "pass2_1" {
+  egress = false      # default : false
   cidr_block = "0.0.0.0/0"
   network_acl_id = "${aws_network_acl.pass2.id}"
   protocol       = "tcp"
@@ -59,6 +61,7 @@ resource "aws_network_acl" "fail" {
   }
 }
 resource "aws_network_acl_rule" "fail" {
+  egress = false      # default : false
   cidr_block = "0.0.0.0/0"
   network_acl_id = "${aws_network_acl.fail.id}"
   protocol       = "tcp"
