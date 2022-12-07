@@ -13,10 +13,8 @@ low
 ### explanation
 
 ---
-
-aws_ami_launch_permission의 iamge_id와 account_id를 중복하여 선언하면 안된다. <br />
-왜냐하면 두개의 aws_ami_launch_permission에서 같은 iamge_id와 account_id를적용하면 한개의 리소스는 적용되지 않기 때문이다.
-
+aws_ami_launch_permission 에서 같은 image_id와 account_id를 선언하면 안된다. <br />
+왜냐하면 두개의 resource에서 같은 정책을 적용한 후 한개의 리소스에서 값을 변경하면  코드와 인프라의 상태가 일치하지 않기 때문이다.
 
 ### insecure example
 
